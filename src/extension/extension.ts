@@ -16,7 +16,7 @@ import { randomName } from '../common/names';
 import * as localize from '../common/localize';
 import { availableColors, normalizeColor } from '../panel/pets';
 
-const EXTRA_PETS_KEY = 'vscode-pets.extra-pets';
+const EXTRA_PETS_KEY = 'vscode-ppussung.extra-pets';
 const EXTRA_PETS_KEY_TYPES = EXTRA_PETS_KEY + '.types';
 const EXTRA_PETS_KEY_COLORS = EXTRA_PETS_KEY + '.colors';
 const EXTRA_PETS_KEY_NAMES = EXTRA_PETS_KEY + '.names';
@@ -51,7 +51,7 @@ let webviewViewProvider: PetWebviewViewProvider;
 
 function getConfiguredSize(): PetSize {
     var size = vscode.workspace
-        .getConfiguration('vscode-pets')
+        .getConfiguration('vscode-ppussung')
         .get<PetSize>('petSize', DEFAULT_PET_SCALE);
     if (ALL_SCALES.lastIndexOf(size) === -1) {
         size = DEFAULT_PET_SCALE;
@@ -61,7 +61,7 @@ function getConfiguredSize(): PetSize {
 
 function getConfiguredTheme(): Theme {
     var theme = vscode.workspace
-        .getConfiguration('vscode-pets')
+        .getConfiguration('vscode-ppussung')
         .get<Theme>('theme', DEFAULT_THEME);
     if (ALL_THEMES.lastIndexOf(theme) === -1) {
         theme = DEFAULT_THEME;
@@ -75,13 +75,13 @@ function getConfiguredThemeKind(): ColorThemeKind {
 
 function getConfigurationPosition() {
     return vscode.workspace
-        .getConfiguration('vscode-pets')
+        .getConfiguration('vscode-ppussung')
         .get<ExtPosition>('position', DEFAULT_POSITION);
 }
 
 function getThrowWithMouseConfiguration(): boolean {
     return vscode.workspace
-        .getConfiguration('vscode-pets')
+        .getConfiguration('vscode-ppussung')
         .get<boolean>('throwBallWithMouse', true);
 }
 
@@ -95,7 +95,7 @@ function updatePanelThrowWithMouse(): void {
 async function updateExtensionPositionContext() {
     await vscode.commands.executeCommand(
         'setContext',
-        'vscode-pets.position',
+        'vscode-ppussung.position',
         getConfigurationPosition(),
     );
 }
@@ -119,13 +119,13 @@ export class PetSpecification {
 
     static fromConfiguration(): PetSpecification {
         var color = vscode.workspace
-            .getConfiguration('vscode-pets')
+            .getConfiguration('vscode-ppussung')
             .get<PetColor>('petColor', DEFAULT_COLOR);
         if (ALL_COLORS.lastIndexOf(color) === -1) {
             color = DEFAULT_COLOR;
         }
         var type = vscode.workspace
-            .getConfiguration('vscode-pets')
+            .getConfiguration('vscode-ppussung')
             .get<PetType>('petType', DEFAULT_PET_TYPE);
         if (ALL_PETS.lastIndexOf(type) === -1) {
             type = DEFAULT_PET_TYPE;
@@ -201,7 +201,7 @@ async function handleRemovePetMessage(
 ) {
     var petList: IPetInfo[] = Array();
     switch (message.command) {
-        case 'list-pets':
+        case 'list-ppussung':
             message.text.split('\n').forEach((pet) => {
                 if (!pet) {
                     return;
@@ -284,7 +284,7 @@ function getWebview(): vscode.Webview | undefined {
 
 export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
-        vscode.commands.registerCommand('vscode-pets.start', async () => {
+        vscode.commands.registerCommand('vscode-ppussung.start', async () => {
             if (
                 getConfigurationPosition() === ExtPosition.explorer &&
                 webviewViewProvider
@@ -321,7 +321,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.StatusBarAlignment.Right,
         100,
     );
-    spawnPetStatusBar.command = 'vscode-pets.spawn-pet';
+    spawnPetStatusBar.command = 'vscode-ppussung.spawn-pet';
     context.subscriptions.push(spawnPetStatusBar);
 
     context.subscriptions.push(
@@ -359,7 +359,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('vscode-pets.throw-ball', () => {
+        vscode.commands.registerCommand('vscode-ppussung.throw-ball', () => {
             const panel = getPetPanel();
             if (panel !== undefined) {
                 panel.throwBall();
@@ -368,7 +368,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('vscode-pets.delete-pet', async () => {
+        vscode.commands.registerCommand('vscode-ppussung.delete-pet', async () => {
             const panel = getPetPanel();
             if (panel !== undefined) {
                 panel.listPets();
@@ -383,7 +383,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('vscode-pets.roll-call', async () => {
+        vscode.commands.registerCommand('vscode-ppussung.roll-call', async () => {
             const panel = getPetPanel();
             if (panel !== undefined) {
                 panel.rollCall();
@@ -395,7 +395,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'vscode-pets.export-pet-list',
+            'vscode-ppussung.export-pet-list',
             async () => {
                 const pets = PetSpecification.collectionFromMemento(
                     context,
@@ -439,7 +439,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'vscode-pets.import-pet-list',
+            'vscode-ppussung.import-pet-list',
             async () => {
                 const options: vscode.OpenDialogOptions = {
                     canSelectMany: false,
@@ -498,7 +498,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('vscode-pets.spawn-pet', async () => {
+        vscode.commands.registerCommand('vscode-ppussung.spawn-pet', async () => {
             const panel = getPetPanel();
             if (
                 getConfigurationPosition() === ExtPosition.explorer &&
@@ -580,7 +580,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'vscode-pets.remove-all-pets',
+            'vscode-ppussung.remove-all-pets',
             async () => {
                 const panel = getPetPanel();
                 if (panel !== undefined) {
@@ -603,10 +603,10 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.workspace.onDidChangeConfiguration(
             (e: vscode.ConfigurationChangeEvent): void => {
                 if (
-                    e.affectsConfiguration('vscode-pets.petColor') ||
-                    e.affectsConfiguration('vscode-pets.petType') ||
-                    e.affectsConfiguration('vscode-pets.petSize') ||
-                    e.affectsConfiguration('vscode-pets.theme') ||
+                    e.affectsConfiguration('vscode-ppussung.petColor') ||
+                    e.affectsConfiguration('vscode-ppussung.petType') ||
+                    e.affectsConfiguration('vscode-ppussung.petSize') ||
+                    e.affectsConfiguration('vscode-ppussung.theme') ||
                     e.affectsConfiguration('workbench.colorTheme')
                 ) {
                     const spec = PetSpecification.fromConfiguration();
@@ -623,11 +623,11 @@ export function activate(context: vscode.ExtensionContext) {
                     }
                 }
 
-                if (e.affectsConfiguration('vscode-pets.position')) {
+                if (e.affectsConfiguration('vscode-ppussung.position')) {
                     void updateExtensionPositionContext();
                 }
 
-                if (e.affectsConfiguration('vscode-pets.throwBallWithMouse')) {
+                if (e.affectsConfiguration('vscode-ppussung.throwBallWithMouse')) {
                     updatePanelThrowWithMouse();
                 }
             },
@@ -799,7 +799,7 @@ class PetWebviewContainer implements IPetPanel {
     }
 
     public listPets() {
-        void this.getWebview().postMessage({ command: 'list-pets' });
+        void this.getWebview().postMessage({ command: 'list-ppussung' });
     }
 
     public rollCall(): void {
@@ -980,7 +980,7 @@ class PetPanel extends PetWebviewContainer implements IPetPanel {
     }
 
     public listPets() {
-        void this.getWebview().postMessage({ command: 'list-pets' });
+        void this.getWebview().postMessage({ command: 'list-ppussung' });
     }
 
     public rollCall(): void {
