@@ -201,7 +201,7 @@ async function handleRemovePetMessage(
 ) {
     var petList: IPetInfo[] = Array();
     switch (message.command) {
-        case 'list-ppussung':
+        case 'list-pets':
             message.text.split('\n').forEach((pet) => {
                 if (!pet) {
                     return;
@@ -799,7 +799,7 @@ class PetWebviewContainer implements IPetPanel {
     }
 
     public listPets() {
-        void this.getWebview().postMessage({ command: 'list-ppussung' });
+        void this.getWebview().postMessage({ command: 'list-pets' });
     }
 
     public rollCall(): void {
