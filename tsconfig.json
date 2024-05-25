@@ -6,6 +6,5 @@
         "lib": ["es2016", "dom"],
         "target": "esnext"
     },
-    "include": ["src","out"],
-    "exclude": ["node_modules", ".vscode-test"]
+    "include": ["src"],
 }
