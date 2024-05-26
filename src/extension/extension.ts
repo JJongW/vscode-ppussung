@@ -20,9 +20,9 @@ const EXTRA_PETS_KEY = 'vscode-ppussung.extra-pets';
 const EXTRA_PETS_KEY_TYPES = EXTRA_PETS_KEY + '.types';
 const EXTRA_PETS_KEY_COLORS = EXTRA_PETS_KEY + '.colors';
 const EXTRA_PETS_KEY_NAMES = EXTRA_PETS_KEY + '.names';
-const DEFAULT_PET_SCALE = PetSize.nano;
-const DEFAULT_COLOR = PetColor.brown;
-const DEFAULT_PET_TYPE = PetType.cat;
+const DEFAULT_PET_SCALE = PetSize.medium;
+const DEFAULT_COLOR = PetColor.white;
+const DEFAULT_PET_TYPE = PetType.ppussung;
 const DEFAULT_POSITION = ExtPosition.panel;
 const DEFAULT_THEME = Theme.none;
 

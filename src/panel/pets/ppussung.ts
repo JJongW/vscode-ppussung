@@ -8,18 +8,18 @@ export class Ppussung extends BasePetType {
         PetColor.white,
     ];
     sequence = {
-        startingState: States.lie,
-        sequenceStates: [ 
+        startingState: States.sitIdle,
+        sequenceStates: [
             {
-                state: States.lie,
+                state: States.sitIdle,
                 possibleNextStates: [
                     States.walkRight,
                     States.runRight,
-                    States.sitIdle,
+                    States.lie,
                 ],
             },
             {
-                state: States.sitIdle,
+                state: States.lie,
                 possibleNextStates: [States.walkRight, States.runRight],
             },
             {

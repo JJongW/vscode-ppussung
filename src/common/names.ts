@@ -37,7 +37,7 @@ export function randomName(type: PetType): string {
                 [PetType.turtle]: TURTLE_NAMES,
                 [PetType.ppussung]: PPUSSUNG_NAMES,
             } as Record<PetType, ReadonlyArray<string>>
-        )[type] ?? CAT_NAMES;
+        )[type] ?? PPUSSUNG_NAMES;
 
     return (
         collection[Math.floor(Math.random() * collection.length)] ?? 'Unknown'
